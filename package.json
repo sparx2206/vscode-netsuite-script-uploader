@@ -11,14 +11,52 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:netsuite.initialize"
     ],
     "main": "./extension",
     "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
+        "configuration": {
+            "title": "NetSuite Configuration",
+            "type": "object",
+            "properties": {
+                "netsuite.sandboxUrl":{
+                    "type":"string",
+                    "default":null,
+                    "description": "Specifies user defined NetSuite Sanbox URL used by NetSuite Extensions"
+                },
+                "netsuite.productionUrl":{
+                    "type":"string",
+                    "default":null,
+                    "description": "Specifies user defined NetSuite Production URL used by NetSuite Extensions"
+                },
+                "netsuite.userName":{
+                    "type":"string",
+                    "default":null,
+                    "description": "Specifies user defined NetSuite user name used by NetSuite Extensions"
+                },
+                "netsuite.userRole":{
+                    "type":"number",
+                    "default":0,
+                    "description": "Specifies user defined NetSuite user role used by NetSuite Extensions"
+                }
+            }
+        },
+        "menus":{
+            "explorer/context": [{
+            "command": "netsuite.push",
+            "title":"NetSuite: Push",
+            "group": "navigation"
         }]
+        },
+        "commands":[{
+            "command": "netsuite.initialize",
+            "title": "NetSuite: Initialize"
+        },
+        {
+            "command": "netsuite.push",
+            "title": "NetSuite: Push"
+        }
+        ]
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
