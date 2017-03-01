@@ -35,7 +35,7 @@ function activate(context) {
                                                 .then((value) => {
                                                     if (showInputHelper.resolveNetSuitePrompt(value, netsuiteConfiguration.userRole))
                                                     {
-
+                                                        vscode.window.showInformationMessage('Activation is finished.');
                                                     }
                                                 });
                                         }
